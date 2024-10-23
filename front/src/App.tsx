@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from './components/LoginForm'; // Ajusta la ruta según sea necesario
 import RegistroForm from './components/Register'; // Ajusta la ruta según sea necesario
 import './App.css';
+import './App.css';
 
 function App() {
   return (
