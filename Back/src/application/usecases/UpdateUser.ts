@@ -1,14 +1,14 @@
-import { CreateUserDTO } from '../dto/CreateUserDTO';
 import { UserService } from '../../domain/Services/UserService';
+import { CreateUserDTO } from '../dto/CreateUserDTO';
 
-export class CreateUser {
+export class UpdateUser {
     private userService: UserService;
 
     constructor(userService: UserService) {
         this.userService = userService;
     }
 
-    async execute(data: CreateUserDTO) {
-        return await this.userService.createUser(data);
+    async execute(id: number, data: CreateUserDTO) {
+        return await this.userService.updateUser(id, data);
     }
 }

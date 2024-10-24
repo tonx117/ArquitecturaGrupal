@@ -1,41 +1,26 @@
-import { Language } from "../entities/Language";
+import { LanguageRepository } from "../../infrastructure/repositories/LanguageReposiroty";
+import { CreateLanguageDTO } from "../../application/dto/CreateLanguageDTO";
 
 export class LanguageService {
-    private languages: Language[] = [];
-    
-    public create(language: Language): Language {
-        this.languages.push(language);
-        return language;
-    }
-    
-    public list(): Language[] {
-        return this.languages;
-    }
-    
-    public findById(id: number): Language | undefined {
-        return this.languages.find(language => language.id === id);
-    }
-    
-    public findByName(name: string): Language | undefined {
-        return this.languages.find(language => language.name === name);
-    }
-    
-    public update(id: number, language: Language): Language | undefined {
-        const languageIndex = this.languages.findIndex(language => language.id === id);
-        if (languageIndex === -1) {
-        return undefined;
-        }
-        this.languages[languageIndex] = language;
-        return language;
-    }
-    
-    public delete(id: number): Language | undefined {
-        const languageIndex = this.languages.findIndex(language => language.id === id);
-        if (languageIndex === -1) {
-        return undefined;
-        }
-        const language = this.languages[languageIndex];
-        this.languages.splice(languageIndex, 1);
-        return language;
-    }
+  constructor(private languageRepository: LanguageRepository) {}
+
+  async createLanguage(languageDTO: CreateLanguageDTO) {
+    return this.languageRepository.create(languageDTO);
+  }
+
+  async getAllLanguages() {
+    return this.languageRepository.getAll();
+  }
+
+  async getLanguageById(id: number) {
+    return this.languageRepository.getById(id);
+  }
+
+  async updateLanguage(id: number, languageDTO: CreateLanguageDTO) {
+    return this.languageRepository.update(id, languageDTO);
+  }
+
+  async deleteLanguage(id: number) {
+    return this.languageRepository.delete(id);
+  }
 }

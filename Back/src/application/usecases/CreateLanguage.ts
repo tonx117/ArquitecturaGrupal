@@ -1,12 +1,15 @@
-import { Language } from "../../domain/entities/Language";
-import { LanguageService } from "../../domain/Services/LanguageService";
-import { CreateLanguageDTO } from "../dto/CreateLanguageDTO";
+import { LanguageService } from '../../domain/Services/LanguageService';
+import { CreateLanguageDTO } from '../dto/CreateLanguageDTO';
+LanguageService
 
 export class CreateLanguage {
-    constructor (private languageService: LanguageService) {}
+    private languageService: LanguageService;
 
-    execute(data: CreateLanguageDTO): Language {
-        const language = new Language(0, data.name, data.level);
-        return this.languageService.create(language);
+    constructor(languageService: LanguageService) {
+        this.languageService = languageService;
+    }
+
+    async execute(data: CreateLanguageDTO) {
+        return await this.languageService.createLanguage(data);
     }
 }
