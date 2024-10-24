@@ -1,13 +1,19 @@
-import { User } from "../../domain/entities/Users";
-import { UserServices } from "../../domain/Services/UserService";
-import { CreateUserDTO } from "../dto/CreateUserDTO";
+import { CreateUserDTO } from '../dto/CreateUserDTO';
+import { UserService } from '../../domain/Services/UserService';
 
 export class CreateUser {
-    constructor (private useService: UserServices) {}
+    private userService: UserService;
 
-    execute(data: CreateUserDTO): User {
-        const user = new User(0, data.name, data.email, data.password);
-        return this.useService.create(user);
+    constructor(userService: UserService) {
+        this.userService = userService;
     }
+<<<<<<< HEAD
     
 }
+=======
+
+    async execute(data: CreateUserDTO) {
+        return await this.userService.createUser(data);
+    }
+}
+>>>>>>> 5a69f9cdb1978bbb799a962c38389fe9b52f9751
