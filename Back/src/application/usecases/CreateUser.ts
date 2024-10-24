@@ -9,4 +9,5 @@ export class CreateUser {
         const user = new User(0, data.name, data.email, data.password);
         return this.useService.create(user);
     }
+    
 }
