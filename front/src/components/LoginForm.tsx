@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
-import './LoginForm.css'; // Importa el archivo CSS
+import './LoginForm.css'; 
 
 // Adaptador para la lógica de negocio (siguiendo arquitectura hexagonal)
 interface LoginAdapter {
