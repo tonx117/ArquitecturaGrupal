@@ -1,12 +1,12 @@
 import { Globe2, BookOpen, MessageCircle, Award } from "lucide-react";
-//import './landing.css';
+import { Link } from 'react-router-dom'; // Importa Link de react-router-dom
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-blue-200 to-blue-300">
       <header className="px-4 lg:px-6 h-16 flex items-center bg-white shadow">
         <div className="flex items-center space-x-2">
-          <Globe2 className="h-6 w-6 text-blue-600" aria-label="Ícono de LinguaLearn" />
+          <Globe2 className="h-6 w-6 text-blue-600" aria-label="Ícono de TomyLanguage" />
           <span className="text-2xl font-bold text-blue-800">TomyLanguage</span>
         </div>
         <nav className="ml-auto flex gap-4 sm:gap-6">
@@ -84,7 +84,7 @@ export default function LandingPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { name: "María G.", text: "LinguaLearn ha transformado mi forma de aprender idiomas. ¡Es divertido y efectivo!" },
+                { name: "María G.", text: "TomyLanguage ha transformado mi forma de aprender idiomas. ¡Es divertido y efectivo!" },
                 { name: "Carlos R.", text: "Gracias a esta app, ahora puedo mantener conversaciones en inglés con confianza." },
                 { name: "Laura S.", text: "Las lecciones interactivas y el seguimiento de progreso me mantienen motivada todos los días." }
               ].map((testimonial, index) => (
@@ -108,22 +108,15 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="w-full max-w-sm space-y-2">
-                <form className="flex space-x-2">
-                  <input 
-                    className="flex-1 bg-white text-blue-900 px-4 py-2 rounded shadow" 
-                    placeholder="Ingresa tu email" 
-                    type="email" 
-                    aria-label="Ingresa tu email" 
-                    required
-                  />
+                <Link to="/login"> {/* Cambia el botón a un Link que dirija a /login */}
                   <button 
                     className="bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded shadow" 
-                    type="submit" 
+                    type="button" 
                     aria-label="Registrarse"
                   >
                     Registrarse
                   </button>
-                </form>
+                </Link>
                 <p className="text-xs text-blue-200">
                   Al registrarte, aceptas nuestros términos de servicio y política de privacidad.
                 </p>
