@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
+import './LoginForm.css'; // Importa el archivo CSS
 
 // Adaptador para la lógica de negocio (siguiendo arquitectura hexagonal)
 interface LoginAdapter {
@@ -9,10 +10,8 @@ interface LoginAdapter {
 // Implementación mock del adaptador
 const mockLoginAdapter: LoginAdapter = {
   login: async (email, password) => {
-    // Simulación de una llamada a API
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log('Login attempt:', { email, password });
-    // Aquí iría la lógica real de autenticación
   }
 };
 
@@ -33,7 +32,6 @@ export default function LoginForm({ loginAdapter = mockLoginAdapter }: LoginForm
 
     try {
       await loginAdapter.login(email, password);
-      // Manejar el éxito del inicio de sesión aquí
     } catch (err) {
       setError('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
     } finally {
@@ -42,17 +40,17 @@ export default function LoginForm({ loginAdapter = mockLoginAdapter }: LoginForm
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 to-blue-500">
-      <div className="bg-white p-10 rounded-lg shadow-lg w-96">
-        <div className="flex justify-center mb-6">
+    <div className="login-container">
+      <div className="login-box">
+        <div className="logo-container">
           <Globe className="text-blue-600 w-16 h-16" />
         </div>
-        <h2 className="text-3xl font-bold text-center text-blue-800 mb-6">
-          ¡Conéctate y habla el mundo!
+        <h2 className="title">
+        ¡Welcome back!
         </h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="label">
               Correo electrónico
             </label>
             <input
@@ -61,12 +59,12 @@ export default function LoginForm({ loginAdapter = mockLoginAdapter }: LoginForm
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+              className="input"
               placeholder="tu@email.com"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="label">
               Contraseña
             </label>
             <input
@@ -75,15 +73,15 @@ export default function LoginForm({ loginAdapter = mockLoginAdapter }: LoginForm
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+              className="input"
               placeholder="••••••••"
             />
           </div>
-          {error && <p className="text-red-600 text-sm">{error}</p>}
+          {error && <p className="error-message">{error}</p>}
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-blue-600 text-white rounded-md py-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out"
+            className="submit-button"
           >
             {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
           </button>

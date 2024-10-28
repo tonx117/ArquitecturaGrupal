@@ -1,108 +1,122 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useState } from 'react';
+import { Globe } from 'lucide-react';
+import './LoginForm.css'; // Importa el archivo CSS
 
-
-type FormData = {
-  nombre: string
-  apellido: string
-  email: string
-  password: string
+// Adaptador para la lógica de negocio (siguiendo arquitectura hexagonal)
+interface RegisterAdapter {
+  register: (firstName: string, lastName: string, email: string, password: string) => Promise<void>;
 }
 
-export default function RegistroForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
+// Implementación mock del adaptador
+const mockRegisterAdapter: RegisterAdapter = {
+  register: async (firstName, lastName, email, password) => {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log('Registration attempt:', { firstName, lastName, email, password });
+  }
+};
 
-  const onSubmit = (data: FormData) => {
-    console.log(data)
-    // Aquí iría la lógica para enviar los datos al servidor
+interface RegisterFormProps {
+  registerAdapter: RegisterAdapter;
+}
+
+export default function RegisterForm({ registerAdapter = mockRegisterAdapter }: RegisterFormProps) {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+
+    try {
+      await registerAdapter.register(firstName, lastName, email, password);
+    } catch (err) {
+      setError('Error al registrarse. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-xl shadow-md">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Crear una cuenta
-          </h2>
+    <div className="login-container">
+      <div className="login-box">
+        <div className="logo-container">
+          <Globe className="text-blue-600 w-16 h-16" />
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="nombre" className="sr-only">
-                Nombre
-              </label>
-              <input
-                id="nombre"
-                type="text"
-                {...register('nombre', { required: 'El nombre es obligatorio' })}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Nombre"
-              />
-              {errors.nombre && <p className="mt-2 text-sm text-red-600">{errors.nombre.message}</p>}
-            </div>
-            <div>
-              <label htmlFor="apellido" className="sr-only">
-                Apellido
-              </label>
-              <input
-                id="apellido"
-                type="text"
-                {...register('apellido', { required: 'El apellido es obligatorio' })}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Apellido"
-              />
-              {errors.apellido && <p className="mt-2 text-sm text-red-600">{errors.apellido.message}</p>}
-            </div>
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Correo electrónico
-              </label>
-              <input
-                id="email"
-                type="email"
-                {...register('email', { 
-                  required: 'El correo electrónico es obligatorio',
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Dirección de correo electrónico inválida'
-                  }
-                })}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Correo electrónico"
-              />
-              {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>}
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Contraseña
-              </label>
-              <input
-                id="password"
-                type="password"
-                {...register('password', { 
-                  required: 'La contraseña es obligatoria',
-                  minLength: {
-                    value: 6,
-                    message: 'La contraseña debe tener al menos 6 caracteres'
-                  }
-                })}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Contraseña"
-              />
-              {errors.password && <p className="mt-2 text-sm text-red-600">{errors.password.message}</p>}
-            </div>
-          </div>
-
+        <h2 className="title">
+          ¡Regístrate y habla el mundo!
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Registrarse
-            </button>
+            <label htmlFor="firstName" className="label">
+              Nombre
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+              className="input"
+              placeholder="Tu nombre"
+            />
           </div>
+          <div>
+            <label htmlFor="lastName" className="label">
+              Apellido
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+              className="input"
+              placeholder="Tu apellido"
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="label">
+              Correo electrónico
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="input"
+              placeholder="tu@email.com"
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="label">
+              Contraseña
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="input"
+              placeholder="••••••••"
+            />
+          </div>
+          {error && <p className="error-message">{error}</p>}
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="submit-button"
+          >
+            {isLoading ? 'Registrando...' : 'Registrarse'}
+          </button>
         </form>
       </div>
     </div>
-  )
+  );
 }
