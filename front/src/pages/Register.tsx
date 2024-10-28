@@ -104,7 +104,7 @@ export default function RegisterForm({ registerAdapter = mockRegisterAdapter }: 
               onChange={(e) => setPassword(e.target.value)}
               required
               className="input"
-              placeholder="••••••••"
+              placeholder="Contraseña"
             />
           </div>
           {error && <p className="error-message">{error}</p>}
