@@ -7,7 +7,7 @@ export default function LandingPage() {
       <header className="px-4 lg:px-6 h-16 flex items-center bg-white shadow">
         <div className="flex items-center space-x-2">
           <Globe2 className="h-6 w-6 text-blue-600" aria-label="Ícono de LinguaLearn" />
-          <span className="text-2xl font-bold text-blue-800">LinguaLearn</span>
+          <span className="text-2xl font-bold text-blue-800">TomyLanguage</span>
         </div>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <a className="text-sm font-medium hover:underline underline-offset-4 text-blue-800" href="#">
@@ -33,7 +33,7 @@ export default function LandingPage() {
                   Aprende idiomas de forma divertida y eficaz
                 </h1>
                 <p className="mx-auto max-w-[700px] text-blue-800 md:text-xl">
-                  Domina un nuevo idioma con LinguaLearn. Lecciones interactivas, práctica de conversación y seguimiento de progreso personalizado.
+                  Domina un nuevo idioma con TomyLanguage. Lecciones interactivas, práctica de conversación y seguimiento de progreso personalizado.
                 </p>
               </div>
               <div className="space-x-4">
@@ -104,7 +104,7 @@ export default function LandingPage() {
                   Comienza tu viaje lingüístico hoy
                 </h2>
                 <p className="mx-auto max-w-[600px] text-blue-200 md:text-xl">
-                  Únete a miles de estudiantes que están dominando nuevos idiomas con LinguaLearn.
+                  Únete a miles de estudiantes que están dominando nuevos idiomas con TomyLanguage.
                 </p>
               </div>
               <div className="w-full max-w-sm space-y-2">
@@ -133,7 +133,7 @@ export default function LandingPage() {
         </section>
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-blue-300">
-        <p className="text-xs text-blue-700">© 2024 LinguaLearn. Todos los derechos reservados.</p>
+        <p className="text-xs text-blue-700">© 2024 TomyLanguage. Todos los derechos reservados.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <a className="text-xs hover:underline underline-offset-4 text-blue-700" href="#">
             Términos de servicio
