@@ -49,3 +49,11 @@ Inicia los contenedores definidos en el archivo `docker-compose.yml` en modo "de
 
 - **Acciones:**
   - Inicia los contenedores en segundo plano, permitiendo el uso continuo de la terminal.
+
+
+    ```bash
+    sudo docker compose logs -f
+    ```
+
+- **Acciones:**
+  - El `-f` (follow) permite seguir los logs de los contenedores en tiempo real, mostrando nuevas entradas a medida que se generan.
