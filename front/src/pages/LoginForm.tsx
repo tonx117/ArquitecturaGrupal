@@ -2,24 +2,23 @@ import { useState } from 'react';
 import { Globe } from 'lucide-react';
 import "@public/css/LoginForm.css"; // Importa el archivo CSS
 
-// Adaptador para la lógica de negocio (siguiendo arquitectura hexagonal)
 interface LoginAdapter {
   login: (email: string, password: string) => Promise<void>;
 }
 
-// Implementación mock del adaptador
 const mockLoginAdapter: LoginAdapter = {
   login: async (email, password) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log('Login attempt:', { email, password });
+    console.log('Intento de inicio de sesión:', { email, password });
   }
 };
 
 interface LoginFormProps {
   loginAdapter: LoginAdapter;
+  onRegisterClick: () => void;
 }
 
-export default function LoginForm({ loginAdapter = mockLoginAdapter }: LoginFormProps) {
+export default function LoginForm({ loginAdapter = mockLoginAdapter, onRegisterClick }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -45,14 +44,10 @@ export default function LoginForm({ loginAdapter = mockLoginAdapter }: LoginForm
         <div className="logo-container">
           <Globe className="text-blue-600 w-16 h-16" />
         </div>
-        <h2 className="title">
-        ¡Welcome back!
-        </h2>
+        <h2 className="title">¡Bienvenido de nuevo!</h2>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label htmlFor="email" className="label">
-              Correo electrónico
-            </label>
+            <label htmlFor="email" className="label">Correo electrónico</label>
             <input
               id="email"
               type="email"
@@ -64,9 +59,7 @@ export default function LoginForm({ loginAdapter = mockLoginAdapter }: LoginForm
             />
           </div>
           <div>
-            <label htmlFor="password" className="label">
-              Contraseña
-            </label>
+            <label htmlFor="password" className="label">Contraseña</label>
             <input
               id="password"
               type="password"
@@ -78,14 +71,16 @@ export default function LoginForm({ loginAdapter = mockLoginAdapter }: LoginForm
             />
           </div>
           {error && <p className="error-message">{error}</p>}
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="submit-button"
-          >
+          <button type="submit" disabled={isLoading} className="submit-button">
             {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
           </button>
         </form>
+        <div className="register-container">
+          <p className="register-text">¿No tienes una cuenta?</p>
+          <button type="button" onClick={onRegisterClick} className="register-button">
+            Regístrate aquí
+          </button>
+        </div>
       </div>
     </div>
   );

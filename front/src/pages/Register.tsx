@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import "@public/css/RegisterForm.css"; // Importa el archivo CSS
 
 // Adaptador para la lógica de negocio (siguiendo arquitectura hexagonal)
@@ -26,6 +27,8 @@ export default function RegisterForm({ registerAdapter = mockRegisterAdapter }: 
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  
+  const navigate = useNavigate(); // Inicializa useNavigate
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,6 +37,7 @@ export default function RegisterForm({ registerAdapter = mockRegisterAdapter }: 
 
     try {
       await registerAdapter.register(firstName, lastName, email, password);
+      navigate('/login'); // Redirige al login después de registrarse
     } catch (err) {
       setError('Error al registrarse. Por favor, inténtalo de nuevo.');
     } finally {
