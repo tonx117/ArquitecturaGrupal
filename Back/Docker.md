@@ -1,3 +1,16 @@
+
+# Construcción de una Imagen Docker
+
+## `sudo docker build -t miapp:1 .`
+Construye una imagen Docker a partir del `Dockerfile` y le asigna una etiqueta específica.
+
+- **Acciones:**
+  - `sudo`: Ejecuta el comando con permisos de superusuario.
+  - `docker build`: Inicia la construcción de una imagen Docker.
+  - `-t miapp:1`: Etiqueta la imagen como `miapp` y asigna la versión `1`.
+  - `.`: Especifica el directorio actual como la ubicación del `Dockerfile`.
+
+
 # Comandos de Docker Compose
 
 ## `sudo docker compose build`
@@ -50,13 +63,26 @@ Inicia los contenedores definidos en el archivo `docker-compose.yml` en modo "de
 - **Acciones:**
   - Inicia los contenedores en segundo plano, permitiendo el uso continuo de la terminal.
 
+---
 
-    ```bash
-    sudo docker compose logs -f
-    ```
+## `sudo docker compose logs -f`
+Muestra los logs de los contenedores en tiempo real después de haber hecho `docker compose start`.
 
 - **Acciones:**
   - El `-f` (follow) permite seguir los logs de los contenedores en tiempo real, mostrando nuevas entradas a medida que se generan.
 
+---
+
+# Comandos de PostgreSQL
 
 ## `psql -h localhost -p 5434 -U usuario -d Idiomas`
+Conecta a una base de datos PostgreSQL utilizando el cliente de línea de comandos.
+
+- **Acciones:**
+  - `psql`: Inicia el cliente de PostgreSQL para realizar consultas.
+  - `-h localhost`: Especifica el host de conexión (en este caso, `localhost`).
+  - `-p 5434`: Define el puerto de conexión, aquí `5434` en lugar del predeterminado `5432`.
+  - `-U usuario`: Define el usuario que se usará para acceder a la base de datos.
+  - `-d Idiomas`: Especifica la base de datos a la que se conecta, en este caso `Idiomas`.
+
+---
