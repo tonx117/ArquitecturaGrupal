@@ -15,7 +15,7 @@
     background-color: white;
     padding: 2.5rem; /* 10 units */
     border-radius: 0.5rem; /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
     width: 24rem; /* Width of the form */
 }
 
@@ -29,7 +29,7 @@
     font-size: 1.875rem; /* 3xl */
     font-weight: bold;
     text-align: center;
-    color: #1e3a8a; /* Azul oscuro */
+    color: #1e3a8a; /* Dark blue */
     margin-bottom: 1.5rem; /* 6 units */
 }
 
@@ -44,22 +44,27 @@
 .input {
     width: 100%;
     padding: 0.75rem 1rem; /* Py-3, Px-4 */
-    border: 1px solid #d1d5db; /* Border gray */
+    border: 1px solid #d1d5db; /* Gray border */
     border-radius: 0.375rem; /* Rounded */
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Light shadow */
-    placeholder: #9ca3af; /* Placeholder gray */
+    color: #111827; /* Dark text color for input */
     transition: all 0.15s ease-in-out; /* Smooth transition */
+}
+
+.input::placeholder {
+    color: #9ca3af; /* Placeholder gray */
 }
 
 .input:focus {
     outline: none;
-    ring: 2px solid #3b82f6; /* Blue focus ring */
-    border-color: transparent; /* Hide default border */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Blue focus ring */
+    border-color: #3b82f6; /* Blue border on focus */
 }
 
 .error-message {
     color: #f87171; /* Red for error messages */
     font-size: 0.875rem; /* text-sm */
+    margin-top: 0.25rem; /* Small margin above error message */
 }
 
 .submit-button {
@@ -68,13 +73,20 @@
     color: white;
     border-radius: 0.375rem; /* Rounded */
     padding: 0.75rem; /* Py-3 */
-    transition: all 0.15s ease-in-out; /* Smooth transition */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.15s ease-in-out, transform 0.15s ease-in-out; /* Smooth transition */
 }
 
 .submit-button:hover {
     background-color: #2563eb; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
 }
 
 .submit-button:disabled {
     background-color: #bfdbfe; /* Light blue when disabled */
+    cursor: not-allowed; /* Change cursor to indicate button is disabled */
+}
+
+.login-container {
+    text-align: center; /* Center text for login prompts */
 }

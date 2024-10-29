@@ -2,6 +2,7 @@
 import { App } from "../App";
 import { LoginForm } from "../pages/LoginForm";
 import { Route, Routes as RouterRoutes } from "react-router-dom";
+import { RegisterForm } from "../pages/Register";
 
 export const routes = [
   {
@@ -12,7 +13,12 @@ export const routes = [
     path: "/login",
     element: <LoginForm/>,
   },
+  {
+    path: "/register",
+    element: <RegisterForm/>,
+  },
 ];
+
 
 export const RoutesComponent = () => {
   return (
