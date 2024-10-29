@@ -1,5 +1,6 @@
 import { Globe2, BookOpen, MessageCircle, Award } from "lucide-react";
 import { Link } from 'react-router-dom'; // Importa Link de react-router-dom
+import "@public/css/landing.css"
 
 export default function LandingPage() {
   return (

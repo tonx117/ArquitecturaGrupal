@@ -1,42 +1,7 @@
-import { useState } from 'react';
 import { Globe } from 'lucide-react';
 import "@public/css/LoginForm.css"; // Importa el archivo CSS
 
-interface LoginAdapter {
-  login: (email: string, password: string) => Promise<void>;
-}
-
-const mockLoginAdapter: LoginAdapter = {
-  login: async (email, password) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log('Intento de inicio de sesión:', { email, password });
-  }
-};
-
-interface LoginFormProps {
-  loginAdapter: LoginAdapter;
-  onRegisterClick: () => void;
-}
-
-export default function LoginForm({ loginAdapter = mockLoginAdapter, onRegisterClick }: LoginFormProps) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-
-    try {
-      await loginAdapter.login(email, password);
-    } catch (err) {
-      setError('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
-    } finally {
-      setIsLoading(false);
-    }
-  }
+export const LoginForm = () => {
 
   return (
     <div className="login-container">
@@ -45,14 +10,12 @@ export default function LoginForm({ loginAdapter = mockLoginAdapter, onRegisterC
           <Globe className="text-blue-600 w-16 h-16" />
         </div>
         <h2 className="title">¡Bienvenido de nuevo!</h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form className="space-y-5">
           <div>
             <label htmlFor="email" className="label">Correo electrónico</label>
             <input
               id="email"
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               required
               className="input"
               placeholder="tu@email.com"
@@ -63,21 +26,17 @@ export default function LoginForm({ loginAdapter = mockLoginAdapter, onRegisterC
             <input
               id="password"
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
               className="input"
               placeholder="Contraseña"
             />
           </div>
-          {error && <p className="error-message">{error}</p>}
-          <button type="submit" disabled={isLoading} className="submit-button">
-            {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+          <button type="submit"  className="submit-button">
           </button>
         </form>
         <div className="register-container">
           <p className="register-text">¿No tienes una cuenta?</p>
-          <button type="button" onClick={onRegisterClick} className="register-button">
+          <button type="button" className="register-button">
             Regístrate aquí
           </button>
         </div>

@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import App from "../App";
+import { App } from "../App";
 import { LoginForm } from "../pages/LoginForm";
 import { Route, Routes as RouterRoutes } from "react-router-dom";
 
