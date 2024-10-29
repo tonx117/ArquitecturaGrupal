@@ -8,7 +8,7 @@ interface Config {
   username: string;
   password: string;
   host: string;
-  port: Number,
+  port: number; // Cambia de Number a number
   dialect: "postgres" | "mysql" | "sqlite" | "mariadb";
 }
 
@@ -17,6 +17,6 @@ export const config: Config = {
   username: process.env.DB_USER || "postgres",
   password: process.env.DB_PASSWORD || "milanesa",
   host: process.env.DB_HOST || "localhost",
-  port: 5432,
+  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432, // El puerto debe coincidir con el mapeo
   dialect: "postgres", 
 };

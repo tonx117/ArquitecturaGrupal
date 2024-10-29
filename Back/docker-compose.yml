@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:17
+    container_name: idiomas_db
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '5434:5432'
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    networks:
+      - mired
+
+  dualipa:
+    build:
+      context: .  # Ruta del Dockerfile
+      dockerfile: Dockerfile  # Asegúrate de que el Dockerfile esté en el mismo directorio
+    container_name: dualipaApp
+    depends_on:
+      - db
+    ports:
+      - '5000:5000'
+    networks:
+      - mired
+
+networks:
+  mired:
+    external: true
+
+volumes:
+  db_data:
