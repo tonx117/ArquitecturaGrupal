@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
-import '../styles/LoginForm.css'; // Importa el archivo CSS
+import "@public/css/RegisterForm.css"; // Importa el archivo CSS
 
 // Adaptador para la lógica de negocio (siguiendo arquitectura hexagonal)
 interface RegisterAdapter {
@@ -108,7 +108,7 @@ export default function RegisterForm({ registerAdapter = mockRegisterAdapter }: 
               onChange={(e) => setPassword(e.target.value)}
               required
               className="input"
-              placeholder="••••••••"
+              placeholder="Contraseña"
             />
           </div>
           {error && <p className="error-message">{error}</p>}

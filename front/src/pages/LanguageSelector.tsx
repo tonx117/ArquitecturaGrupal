@@ -1,6 +1,6 @@
 import * as React from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import "../styles/LanguageSelector.css";
+import "@public/css/LanguageSelector.css";
 
 type Language = {
   code: string;
