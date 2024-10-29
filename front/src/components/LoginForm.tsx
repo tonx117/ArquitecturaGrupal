@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
-import './LoginForm.css'; 
+import '../styles/LoginForm.css'; 
 
 interface LoginAdapter {
   login: (email: string, password: string) => Promise<void>;

@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados para LandingPage */
+body {
+  @apply bg-gradient-to-b from-blue-100 to-blue-200;
+}
+
+header {
+  @apply h-16 flex items-center px-4 lg:px-6;
+}
+
+nav a {
+  @apply text-sm font-medium text-blue-800 hover:underline underline-offset-4;
+}
+
+h1, h2, h3 {
+  @apply text-blue-900;
+}
+
+h1 {
+  @apply text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl;
+}
+
+h2 {
+  @apply text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center;
+}
+
+h3 {
+  @apply text-xl font-bold mb-2 text-blue-800;
+}
+
+p {
+  @apply text-blue-700;
+}
+
+button {
+  @apply px-4 py-2 rounded;
+}
+
+button.bg-blue-600 {
+  @apply bg-blue-600 hover:bg-blue-700 text-white;
+}
+
+button.border {
+  @apply border border-blue-600 text-blue-600 hover:bg-blue-100;
+}
+
+footer {
+  @apply flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-blue-300;
+}
+
+footer p {
+  @apply text-xs text-blue-700;
+}
+
+footer nav a {
+  @apply text-xs hover:underline underline-offset-4 text-blue-700;
+}
+
+.section {
+  @apply w-full py-12 md:py-24 lg:py-32;
+}
+
+.bg-blue-50 {
+  @apply bg-blue-50;
+}
+
+.bg-blue-600 {
+  @apply bg-blue-600;
+}
+
+.container {
+  @apply px-4 md:px-6;
+}
+
+.flex-col {
+  @apply flex-col items-center space-y-4 text-center;
+}
+
+.testimonial-card {
+  @apply bg-white p-6 rounded-lg shadow-md;
+}
+
+.text-blue-100 {
+  @apply text-blue-100;
+}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Globe } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
-import './LoginForm.css'; // Importa el archivo CSS
+import '../styles/LoginForm.css'; // Importa el archivo CSS
 
 // Adaptador para la lógica de negocio (siguiendo arquitectura hexagonal)
 interface RegisterAdapter {
