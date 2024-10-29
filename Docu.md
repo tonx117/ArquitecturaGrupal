@@ -40,5 +40,5 @@ los datos que se solicitan del usuario para el post y el put son
 
 name,
 email,  
-password
+password 
 
