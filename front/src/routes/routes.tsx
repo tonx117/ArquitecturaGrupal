@@ -2,6 +2,7 @@
 import { App } from "../App";
 import { LoginForm } from "../pages/LoginForm";
 import { Route, Routes as RouterRoutes } from "react-router-dom";
+import MatchGame from "../components/MatchGame";
 
 export const routes = [
   {
@@ -12,6 +13,10 @@ export const routes = [
     path: "/login",
     element: <LoginForm/>,
   },
+  {
+    path: "/Game",
+    element: <MatchGame/>,
+  }
 ];
 
 export const RoutesComponent = () => {
