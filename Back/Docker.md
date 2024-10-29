@@ -1,3 +1,7 @@
+# Crea una red para los componenetes:
+
+## `docker network create mired`
+
 
 # Construcción de una Imagen Docker
 

@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     image: postgres:17
-    container_name: idiomas_db
+    container_name: db
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -29,7 +29,7 @@ services:
 
 networks:
   mired:
-    external: true
+    driver: bridge
 
 volumes:
   db_data:
