@@ -13,7 +13,7 @@ interface Config {
 }
 
 export const config: Config = {
-  database: process.env.DB_NAME || "Idiomas",
+  database: process.env.DB_NAME || "idiomas",
   username: process.env.DB_USER || "postgres",
   password: process.env.DB_PASSWORD || "milanesa",
   host: process.env.DB_HOST || "localhost",
