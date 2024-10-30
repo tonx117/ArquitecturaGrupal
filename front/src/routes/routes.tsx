@@ -3,6 +3,7 @@ import { App } from "../App";
 import { LoginForm } from "../pages/LoginForm";
 import { Route, Routes as RouterRoutes } from "react-router-dom";
 import MatchGame from "../components/MatchGame";
+import { RegisterForm } from "../pages/Register";
 
 export const routes = [
   {
@@ -16,6 +17,10 @@ export const routes = [
   {
     path: "/Game",
     element: <MatchGame/>,
+  },
+  {
+    path: "/Register",
+    element: <RegisterForm/>
   }
 ];
 

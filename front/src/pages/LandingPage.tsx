@@ -55,12 +55,15 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="space-x-4">
-                <button
+                <Link to="/login">
+                  <button
                   className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow-md"
                   aria-label="Comenzar gratis"
-                >
+                  type="button"
+                  >
                   Comienza gratis
-                </button>
+                  </button>
+                </Link>
                 <button
                   className="border border-blue-600 text-blue-600 hover:bg-blue-100 px-4 py-2 rounded shadow-md"
                   aria-label="Saber más"
