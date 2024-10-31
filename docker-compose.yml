@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:17
+    container_name: db
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '5434:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - mired
+
+  backend:
+    build:
+      context: ./Back  # Ruta del Dockerfile del backend
+      dockerfile: Dockerfile
+    container_name: dualipaBack
+    depends_on:
+      - db
+    ports:
+      - '5000:5000'
+    networks:
+      - mired
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+
+  front:
+    build:
+      context: ./front  # Ruta del Dockerfile del frontend (React con Vite)
+      dockerfile: Dockerfile  # Puedes crear un Dockerfile específico para el frontend
+    container_name: dualipaApp
+    ports:
+      - '5173:5173'  # Vite suele correr en el puerto 3000
+    networks:
+      - mired
+
+networks:
+  mired:
+    driver: bridge
+
+volumes:
+  db_data:
