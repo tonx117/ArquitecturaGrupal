@@ -4,6 +4,8 @@ import { LoginForm } from "../pages/LoginForm";
 import { Route, Routes as RouterRoutes } from "react-router-dom";
 import MatchGame from "../components/MatchGame";
 import { RegisterForm } from "../pages/Register";
+import { LanguageSelector } from "../pages/LanguageSelector";
+import WordOrderGame from "../components/WordOrderGame";
 
 export const routes = [
   {
@@ -15,12 +17,20 @@ export const routes = [
     element: <LoginForm/>,
   },
   {
-    path: "/Game",
+    path: "/game",
     element: <MatchGame/>,
   },
   {
-    path: "/Register",
+    path: "/register",
     element: <RegisterForm/>
+  },
+  {
+    path: "/languageselect",
+    element: <LanguageSelector/>
+  },
+  {
+    path: "/wordordergame",
+    element:<WordOrderGame/>
   }
 ];
 
