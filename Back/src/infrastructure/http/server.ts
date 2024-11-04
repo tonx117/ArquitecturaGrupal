@@ -1,9 +1,11 @@
 import express from "express";
+import cors from "cors"; // Importa cors
 import UserRouter from "./routes/UserRoutes";
 import LanguageRouter from "./routes/LanguageRoutes";
 import { sequelize } from "../orm/sequelize";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.use("/user", UserRouter);
