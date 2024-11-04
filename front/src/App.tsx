@@ -1,21 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginForm from './components/LoginForm'; // Ajusta la ruta según sea necesario
-import RegistroForm from './components/Register'; // Ajusta la ruta según sea necesario
 import './App.css';
-import './App.css';
+import LandingPage from './pages/LandingPage'; // Importa el componente de la landing page
 
-function App() {
+
+export const App = () => {
+
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<LoginForm />} />
-          <Route path="/registro" element={<RegistroForm />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="App">
+        <LandingPage />
+    </div>
   );
 }
 
-export default App;

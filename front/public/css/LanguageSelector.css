@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.language-selector {
+    text-align: center;
+  }
+  
+  .language-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .embla {
+    display: flex;
+  }
+  
+  .embla__container {
+    display: flex; /* Use flexbox to layout children in a row */
+  }
+  
+  .embla__slide {
+    flex: 0 0 auto; /* Prevent slides from shrinking or growing */
+    width: 120px; /* Adjust width as needed */
+    margin: 0 10px; /* Space between language cards */
+  }
+  
+  .language-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+  
+  .language-card.selected {
+    background-color: #e0f7fa; /* Highlight selected card */
+    transform: scale(1.05); /* Slightly enlarge selected card */
+  }
+  
+  .language-card:hover {
+    background-color: #f1f1f1; /* Hover effect */
+  }
+  
+  .selected-language {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
